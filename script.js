@@ -23,9 +23,9 @@
 //   3. The status message area (id="status")
 // --------------------------------------------
 
-const textBox = 
-const outputBox = 
-const statusBox = 
+const textBox = document.querySelector("#user-input");
+const outputBox = document.querySelector("#quiz-outputs");
+const statusBox = document.querySelector("#status");
 
 // This console.log helps us verify our selections worked correctly.
 // Open the browser's Developer Tools (F12) to see the output.
@@ -60,6 +60,8 @@ let pluto = false;
 // --------------------------------------------
 
 const checkAnswer = () => {
+  const currentAnswer = textBox.value;
+  console.log("Checking", currentAnswer)
   // Get the current value from the text input
   
 
@@ -70,28 +72,37 @@ const checkAnswer = () => {
   // For incorrect answers:
   //   - Display an error message in the statusBox
 
-  if (currentAnswer === "Mercury") {
+  if (currentAnswer === "Mercury") { outputBox.innerHTML += `<h3> Mercury </h3> <p> Closet planet to the sun !</p>`;
+    score +=1;
 
-  } else if (currentAnswer === "Venus") {
+  } else if (currentAnswer === "Venus") { outputBox.innerHTML += `<h3> Venus </h3> <p> 2nd farthest from the sun  !</p>`;
+    score +=1;
 
-  } else if (currentAnswer === "Earth") {
+  } else if (currentAnswer === "Earth") { outputBox.innerHTML += `<h3> Earth </h3> <p> 3rd planet to the sun !</p>`;
+    score +=1;
 
-  } else if (currentAnswer === "Mars") {
+  } else if (currentAnswer === "Mars") { outputBox.innerHTML += `<h3> Mars </h3> <p> 4th planet to the sun !</p>`;
+    score +=1;
 
-  } else if (currentAnswer === "Jupiter") {
+  } else if (currentAnswer === "Jupiter") { outputBox.innerHTML += `<h3> Jupitar </h3> <p> 5th planet to the sun !</p>`;
+    score +=1;
 
-  } else if (currentAnswer === "Saturn") {
+  } else if (currentAnswer === "Saturn") { outputBox.innerHTML += `<h3> Saturn </h3> <p> 6th planet to the sun !</p>`;
+    score +=1;
 
-  } else if (currentAnswer === "Uranus") {
+  } else if (currentAnswer === "Uranus") { outputBox.innerHTML += `<h3> Uranus </h3> <p> 7th planet to the sun !</p>`;
+    score +=1;
 
-  } else if (currentAnswer === "Neptune") {
+  } else if (currentAnswer === "Neptune") { outputBox.innerHTML += `<h3> Neptune </h3> <p> 8th planet to the sun !</p>`;
+    score +=1;
 
-  } else if (currentAnswer === "Pluto") {
+  } else if (currentAnswer === "Pluto") { outputBox.innerHTML += `<h3> Pluto </h3> <p> 9th planet to the sun !</p>`;
+    score +=1;
     // Secret bonus answer - Pluto was reclassified as a dwarf planet in 2006
   
   } else {
     // If no conditions match, show an error message
-  
+  statusBox.innerHTML = `Sorry , but ${currentAnswer} is not a planet`;
   }
 
   // After checking the answer, verify if the game is complete
@@ -115,7 +126,8 @@ const checkAnswer = () => {
 
 const checkScore = () => {
   if (score === 8) {
-   
+   statusBox.innerHTML = "Congratulations, you found all 8 planets!";
+   textBox.disabled = true;
   }
   if (score === 8 && pluto) {
     
@@ -142,3 +154,4 @@ const checkScore = () => {
 //   - Calls the checkAnswer function when triggered
 // --------------------------------------------
 
+textBox.addEventListener("change", checkAnswer);
